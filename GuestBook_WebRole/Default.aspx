@@ -1,42 +1,129 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GuestBook_WebRole._Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="GuestBook_WebRole._Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Microsoft Azure Guestbook</title>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div class="general">
+        <div class="title">
+            <h1>
+                GuestBook
+            </h1>
+        </div>
+        <div class="inputSection">
+            <dl>
+                <dt>
+                    <label for="NameLabel">Name:</label></dt>
+                <dd>
+                    <asp:TextBox 
+                       ID="NameTextBox" 
+                       runat="server" 
+                       CssClass="field"/>
+                    <asp:RequiredFieldValidator 
+                      ID="NameRequiredValidator" 
+                      runat="server" 
+                      ControlToValidate="NameTextBox"
+                      Text="*" />
+                </dd>
+                <dt>
+                    <label for="MessageLabel">Message:</label>
+                </dt>
+                <dd>
+                    <asp:TextBox 
+                       ID="MessageTextBox" 
+                       runat="server" 
+                       TextMode="MultiLine" 
+                       CssClass="field" />
+                    <asp:RequiredFieldValidator 
+                       ID="MessageRequiredValidator" 
+                       runat="server" 
+                       ControlToValidate="MessageTextBox"
+                       Text="*" />
+                </dd>
+                <dt>
+                    <label for="FileUpload1">Photo:</label></dt>
+                <dd>
+                    <asp:FileUpload 
+                        ID="FileUpload1" 
+                        runat="server" 
+                        size="16" />
+                    <asp:RequiredFieldValidator 
+                        ID="PhotoRequiredValidator" 
+                        runat="server" 
+                        ControlToValidate="FileUpload1"
+                        Text="*" />
+                    <asp:RegularExpressionValidator 
+                        ID="PhotoRegularExpressionValidator"
+                        runat="server"
+                        ControlToValidate="FileUpload1" 
+                        ErrorMessage="Only .jpg or .png files are allowed"
+                        ValidationExpression="([a-zA-Z\\].*(.jpg|.JPG|.png|.PNG)$)" />
+                </dd>
+            </dl>
+            <div class="inputSignSection">
+                <asp:ImageButton 
+                       ID="SignButton" 
+                       runat="server" 
+                       AlternateText="Sign GuestBook"
+                       onclick="SignButton_Click" 
+                       ImageUrl="~/sign.png" 
+                       ImageAlign="Bottom"  />
+            </div>
+        </div>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <asp:DataList 
+                   ID="DataList1" 
+                   runat="server" 
+                   DataSourceID="ObjectDataSource1">
+                    <ItemTemplate>
+                        <div class="signature">
+                            <div class="signatureImage">
+                                <a href="<%# Eval("PhotoUrl") %>" target="_blank">
+                                    <img src="<%# Eval("ThumbnailUrl") %>" 
+                                         alt="<%# Eval("GuestName") %>" />
+                                </a>
+                            </div>
+                            <div class="signatureDescription">
+                                <div class="signatureName">
+                                    <%# Eval("GuestName") %>
+                                </div>
+                                <div class="signatureSays">
+                                    says
+                                </div>
+                                <div class="signatureDate">
+                                     <%# ((DateTimeOffset)Eval("Timestamp")).ToString() %>
+                                </div>
+                                <div class="signatureMessage">
+                                    "<%# Eval("Message") %>"
+                                </div>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:DataList>
+                <asp:Timer 
+                    ID="Timer1" 
+                    runat="server"
+                    Interval="15000"
+                    OnTick="Timer1_Tick">
+                </asp:Timer>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <asp:ObjectDataSource 
+           ID="ObjectDataSource1"
+           runat="server" 
+           DataObjectTypeName="GuestBook_Data.GuestBookEntry"
+           SelectMethod="GetGuestBookEntries" 
+           TypeName="GuestBook_Data.GuestBookDataSource">
+        </asp:ObjectDataSource>
     </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
-
-</asp:Content>
+    </form>
+</body>
+</html>
