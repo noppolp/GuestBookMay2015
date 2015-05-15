@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "GuestBook", "GuestBook\GuestBook.ccproj", "{A555F4C7-12C3-451F-9F9D-9C38C874E1AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestBook_WebRole", "GuestBook_WebRole\GuestBook_WebRole.csproj", "{CF07CF30-A699-4BF8-ACA2-514BC2308508}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A555F4C7-12C3-451F-9F9D-9C38C874E1AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A555F4C7-12C3-451F-9F9D-9C38C874E1AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A555F4C7-12C3-451F-9F9D-9C38C874E1AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A555F4C7-12C3-451F-9F9D-9C38C874E1AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF07CF30-A699-4BF8-ACA2-514BC2308508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF07CF30-A699-4BF8-ACA2-514BC2308508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF07CF30-A699-4BF8-ACA2-514BC2308508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF07CF30-A699-4BF8-ACA2-514BC2308508}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
