@@ -57,10 +57,14 @@
   <ItemGroup>
     <Folder Include="GuestBook_WebRoleContent\" />
     <Folder Include="GuestBook_WorkerRoleContent\" />
+    <Folder Include="Profiles" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="GuestBook_WebRoleContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="GuestBook_WorkerRoleContent\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\gbmay2015labStaging.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
