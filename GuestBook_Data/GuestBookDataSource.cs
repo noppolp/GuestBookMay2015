@@ -50,9 +50,9 @@ namespace GuestBook_Data
             string thumbnailUrl, string facesMsg)
         {
             CloudTable table = tableClient.GetTableReference("GuestBookEntry");
-            TableOperation retrieveOperation = TableOperation.Retrieve(
+            TableOperation retrieveOperation = TableOperation.Retrieve<GuestBookEntry>(
                 partitionKey, rowKey);
-            GuestBookEntry updateEntity = table.Execute(retrieveOperation).Result
+            GuestBookEntry updateEntity = table.Execute(retrieveOperation).Result 
                 as GuestBookEntry;
             if (updateEntity != null)
             {
